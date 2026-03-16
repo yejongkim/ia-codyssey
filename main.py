@@ -1,21 +1,13 @@
-"""
-Mission Computer Log Analyzer
-화성 기지 미션 컴퓨터 로그 파일을 읽고 사고 원인을 분석하여
-Markdown 형태의 보고서를 작성하는 프로그램
-"""
-
 LOG_FILE = 'mission_computer_main.log'
 REPORT_FILE = 'log_analysis.md'
 
 
 def hello_mars():
-    """Python 설치 확인용 출력 함수"""
     print('Hello Mars')
     print()
 
 
 def read_log_file(filename):
-    """로그 파일을 읽어 각 항목을 딕셔너리 리스트로 반환한다."""
     entries = []
     try:
         with open(filename, 'r', encoding='utf-8') as f:
@@ -71,7 +63,6 @@ def print_log(entries):
 
 
 def analysis_log(entries):
-    """로그 항목을 분석하여 이벤트 통계와 사고 관련 항목을 추출한다."""
     analysis = {
         'total': len(entries),
         'info_count': 0,
@@ -109,7 +100,6 @@ def analysis_log(entries):
 
 
 def find_accident_cause(analysis):
-    """분석 결과에서 사고 원인과 경위를 정리한다."""
     cause_entries = analysis['warnings'] + analysis['errors'] + analysis['criticals']
     cause_entries.sort(key=lambda x: x['timestamp'])
 
@@ -138,7 +128,6 @@ def find_accident_cause(analysis):
 
 
 def write_report(entries, analysis, cause, filename):
-    """분석 결과를 Markdown 형식의 보고서 파일로 작성한다."""
     try:
         with open(filename, 'w', encoding='utf-8') as f:
             f.write('# 미션 컴퓨터 로그 분석 보고서\n\n')
@@ -252,9 +241,7 @@ def write_report(entries, analysis, cause, filename):
 
 
 def main():
-    """메인 실행 함수"""
     hello_mars()
-
     print('미션 컴퓨터 로그 분석 프로그램을 시작합니다.')
     print()
 
